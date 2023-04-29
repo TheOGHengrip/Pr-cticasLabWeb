@@ -1,0 +1,230 @@
+:root {
+    --white:#FFF;
+    --black:#000;    
+    --primary: #a9132c ;
+    --primaryOs:  #631a24 ;
+    --secondary: #ff5500;
+    --secondaryOs: #fff200;
+
+
+    --principalFont:'Helvetica';
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 55.9%;
+}
+
+*, *:before, *:after {
+    box-sizing:inherit;
+}
+
+/*Global*/
+body {
+      background-image:  url("https://static.vecteezy.com/system/resources/previews/001/544/378/non_2x/black-elegant-criss-cross-background-free-vector.jpg");g      
+}
+
+p {
+    font-size:1.8rem;
+    font-family: Arial, Helvetica, sans-serif;
+    color:var(--white);
+    font-weight:  bolder;
+
+}
+
+a {
+    text-decoration:none;
+}
+
+img {
+    max-width: 60%;
+}
+
+.contenedor {
+    max-width:120rem;
+    margin:0 auto;
+}
+
+h1, 
+h2, 
+h3 {
+    text-align:center;
+    color:var(--secondary);
+    font-family: var(--principalFont);
+}
+
+h1 {font-size: 4rem;}
+h2 {font-size:3.2rem;}
+h3 {font-size:2.4rem;}
+
+
+/*Header*/
+/*BEM*/ 
+.header {
+    display:grid;
+    grid-template-rows: repeat(1, 1fr);
+}
+
+.header p {
+    font-size: 1.5rem;
+    text-align: center;
+    margin:.5rem auto;
+}
+
+/*Navegacion*/
+.navegacion {
+    background-color:#a9132c;
+    padding:1rem 0;
+    display:flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.navegacion__enlace {
+    font-family: var(--principalFont);
+    color:var(--white);
+    font-size:3rem;
+}
+
+.navegacion__enlace--activo,
+.navegacion__enlace:hover {
+    color:var(--secondary)
+}
+
+/*Footer*/
+.footer {
+    background-color:#a9132c;
+    margin-top:4rem;
+    padding:1rem 0;
+    height: 10rem;
+}
+
+.footer__texto {
+    text-align:right;
+    font-family:var(--principalFont);
+    font-size:2.2rem;
+}
+
+/*GRid*/
+.grid {
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    column-gap: 2rem;
+    row-gap: 2rem;
+}
+@media (min-width:768px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+ul {
+    width:90%;
+    height: 30rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+ul {
+    list-style: none;
+}
+
+ul li {
+    padding:2rem;
+}
+
+.practica {
+    text-align: center;
+    background-color:var(--primaryOs);
+    padding:1rem;
+}
+
+.pract__imagen {
+    width: 60%;
+    border-radius: 50%;
+}
+.pract__imagen:hover {
+    box-shadow:0px 0px 10px #a10514;
+}
+
+
+/*DATOS*/
+.contenedor {
+    max-width: 120rem;
+    width: 0 auto;
+}
+
+.datos {
+    width: 0 auto;
+    box-shadow:0 0 .2rem .3rem #a10514;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.dato {
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+}
+
+/*Practica 1*/
+.practica_1 {
+    box-shadow:0px 0px 10px #a10514;
+}
+
+.practica_1 h3 {
+    display: inline-block;
+    width: 49%;
+}
+
+div.contenido {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+div.contenido p:first-child{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+div.contenido:hover {
+    box-shadow:0px 0px 10px #a10514;
+}
+
+
+/**/
+.practica__ {
+    width:90%;
+    padding:2rem;
+    margin: 0 auto;
+    box-shadow:0 0 1rem #a10514;
+    text-align: justify;
+}
+
+.practica__ p:first-child {
+    color:var(--secondary);
+}
+
+table {
+    width: 50%;
+    color:#a10514;
+    text-align: center;
+}
+table th {
+    border: 1px solid #FFF;
+    width: 100%;
+}
+
+table td:first-child {
+    width:30%;
+}
+
+table td {
+    border:1px solid #FFF
+}
+
+.lista {
+    font-size: 1.5rem;
+}
