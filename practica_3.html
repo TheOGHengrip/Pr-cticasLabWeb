@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica 3</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/normalize.css">
+</head>
+<body>
+
+    <nav class="navegacion">
+        <a class="navegacion__enlace" href="portada.html">Portada</a>
+        <a class="navegacion__enlace navegacion__enlace--activo" href="index.html">Prácticas</a>
+        <a class="navegacion__enlace" href="practica_2.html">Anterior</a>
+        <a class="navegacion__enlace" href="practica_4.html">Siguiente</a>
+    </nav>
+
+    <main class="contenedor">
+        <h1>Práctica 3</h1>
+        <div class="practica__">
+            <div>
+                <p>El papel del archivo de reset CSS</p>
+                <p>Todos los elementos HTML se muestran en pantalla utilizando los estilos por defecto que aplica cada navegador.
+                Ya hemos visto en el capítulo precedente cómo CSS nos permite definir estilos para tipos de letra, modificando el 
+                tamaño y la fuente, pero hay otros estilos no tan obvios. Por ejemplo: el estilo por defecto para un elemento heading 1 
+                &lt;h1&gt; incluye unos márgenes de 10 pixels por encima y por debajo del texto. Si queremos modificar el estilo de h1 para que
+                no lleve márgenes, tendremos que indicar de manera explícita unas reglas que conviertan dichos valores a cero.</p>
+                <p>Una regla CSS para anular los márgenes superior e inferior de los elementos heading 1 es así:</p>
+                <p>h1{<br>
+                    margin-top:0px;<br>
+                    margin-bottom:0px;<br>
+                }
+                </p>
+                <p>Aunque los navegadores web actuales tienen una calidad muy superior a los antiguos, conviene saber que cada motor de restitución empleado por 
+				los navegadores aplica sus propias reglas para mostrar los elementos en pantalla. En teoría esto quiere decir que el margen por defecto de 10 pixeles 
+				en un navegador X puede transformarse en 15 pixels en el navegador Y.
+                </p>
+				<p>Una técnica para homogeneizar las presentaciones en pantalla consiste en utilizar un archivo CSS de reset que elimine los estilos por defecto 
+				aplicados a los elementos HTML utilizados con más frecuencia. Con este reinicio de valores podemos conseguir una base fiable y coherente sobre 
+				la cual construir nuestros nuevos estilos. Para hacernos idea de cómo funcionan los estilos, vamos a abrir una página que ya tiene varios estilos 
+				y le asociaremos una hoja de estilos CSS de reset.
+				</p>
+            </div>
+
+            <div>
+                <p>Breve historia de las técnicas de presentación en pantalla para la Web</p>
+                <p>
+                Cuando se empezó con el diseño web a mediados de los 90, el único método que se podía emplear para crear estructuras visuales complejas, 
+				como por ejemplo la presentación en varias columnas, consistía en emplear el elemento tabla (< table > ). La tabla HTML estaba pensada inicialmente 
+				para mostrar datos de manera estructurada, en filas, columnas y celdas. En aquel momento esa técnica estaba plenamente justificada: las tablas era 
+				lo único que tenían para generar el tipo de diseños que se necesitaban y, además, eran un recurso extremadamente flexible.
+				</p>
+                <p>A partir de aquí, empezaron a utilizarse técnicas como el anidamiento de tablas, es decir, crear tablas dentro de celdas de otras tablas de mayor tamaño.</p>
+				<p>Por ejemplo, el código para una página normal de dos columnas podía empezar creando una tabla de tres filas y dos columnas:</p>
+                <table>
+                    <tr>
+                        <td>Elemento</td>
+                        <td>Elemento</td>
+                    </tr>
+                    <tr>
+                        <td>Elemento</td>
+                        <td>Elemento</td>
+                    </tr>
+                    <tr>
+                        <td>Elemento</td>
+                        <td>Elemento</td>
+                    </tr>
+                </table>
+
+                <p>Puesto que la primera fila se iba a convertir en la sección de cabedera, no interesaría que
+                     quedase dividida en dos columnas. La etiqueta HTML &lt;colspan&gt; permite fusionar las dos celdas:
+                </p>
+
+                <table>
+                    <tr>
+                        <th colspan="2">Cabecera</th>
+                    </tr>
+                    <tr>
+                        <td>Elemento</td>
+                        <td>Elemento</td>
+                    </tr>
+                    <tr>
+                        <td>Elemento</td>
+                        <td>Elemento</td>
+                    </tr>
+                </table>
+                <p>Una tabla cuya primera fila consta de dos celdas fusionadas en una sola.
+                </p>
+                <p>En esta primera fila el diseñador, por ejemplo podía intentar insertar una sección independiente de tres
+                columnas, para mostrar un logo y otros elementos, como una barra de navegación o un campo para pedir
+                credenciales de usuario. Para añadir esta sección, el diseñador tenía que crear una nueva tabla 
+                (esta vez con una fila de tres columnas) dentro de la primera fila de la tabla inicial:</p>
+
+                <table>
+                    <tr>
+                        <th style="width:33.3%;">Cabecera</th>
+                        <th style="width:33.3%;">Cabecera</th>
+                        <th style="width:33.3%;">Cabecera</th>
+                    </tr>
+                    <tr>
+                        <td colspan="1">Elemento</td>
+                        <td colspan="2">Elemento</td>
+                    </tr>
+                </table>
+                <p>Una nueva tabla, con una fila y tres columnas, anidada dentro de la primera fila de la tabla original.</p>
+            </div>
+            <div>
+				<p>Introducción a las distintas opciones de presentación de páginas</p>
+				<p>Hay dos categorías principales de estructuras en base a su anchura: las de anchura fija y las de ancho variable.
+				En las estructuras de ancho fijo todos los elementos de la página se anidan dentro de un contenedor que tiene un ancho 
+				explícito (en este ejemplo utilizamos el valor de 960 pixels, pero se suele utilizar también la unidad de medida em). 
+				La anchura fija es una solución muy cómoda para el diseñador ya que permite ubicar con precisión los distintos elementos 
+				(cabeceras, barras laterales y pies de página). La anchura fija es una solución muy cómoda para el diseñador ya que permite
+				ubicar con precisión los distintos elementos (cabeceras, barras laterales y pies de página). Además, aporta un esqueleto robusto
+				para otros elementos, como la anchura de párrafo o el posicionamiento de imágenes cuando éstas aparecen en gran número 
+				(por ejemplo, en sitios web de catálogos de producto).
+				</p>
+                <p>El elemento &lt;div&gt;: creación de una estructura CSS de dos columnas con anchura fija</p>
+                <p>Esta página emplea una serie de elementos &lt;div&gt; para generar su estructura de base.  Podemos considerar al elemento &lt;div&gt; 
+				como un contenedor genérico en el que podemos poner elementos relacionados entre sí de forma lógica. La apertura y cierre de 
+				etiquetas &lt;div&gt; suele hacerse rodeando a otros elementos de la página, de forma que dichos elementos quedan anidados dentro del 
+				contenedor. Puedes tener en la misma página todos los elementos &lt;div&gt; que consideres necesarios y con frecuencia se utilizan para 
+				crear el armazón visual. Un elemento &lt;div&gt; suele llevar un atributo ID (con lo que adquiere un “nombre” explícito dentro de la página) 
+				o bien pertenecer a una clase CSS, utilizándose ambos como medio para aplicar al contenedor uno o más estilos CSS.
+                </p>
+            </div>
+
+            <div>
+                <p>La propiedad float CSS</p>
+                <p>La propiedad float en CSS hace posible que un texto pueda escribirse alrededor de una imagen. 
+                Este estilo ha sido tomado del diseño de imprenta, donde a este efecto se le llama “justificación”
+                del texto. CSS consigue el mismo efecto haciendo que los elementos que siguen a un elemento 
+                “flotante” puedan rodearlo, cambiando su posición relativa con respecto a él. Este comportamiento 
+                también nos sirve para crear columnas en una página.
+                </p>
+            </div>
+
+            <div>
+                <p>La propiedad clear</p>
+                <p>
+				Cuando añadimos la propiedad CSS clear a un objeto, le estamos indicando una regla que dice “no admito elementos flotantes a mi lado”. 
+				Podemos especificar si queremos que no haya elementos flotantes a la izquierda, a la derecha o en ambos lados. En el caso del pie de página,
+				queremos eliminarlos de ambos lados.
+				</p>
+                Los floats que son relevantes para ser limpiados (cleared) son los primeros floats dentro del mismo contexto de formato de bloque.
+                </p>
+                <p>Valores</p>
+                <p class="lista"> &nbsp; * none: Es un keyword que indica que el elemento no es movido hacia abajo para limpiar elementos flotantes anteriores.</p>
+                <p class="lista"> &nbsp; * left: Es un keyword que indica que el elemento es movido hacia abajo para limpiar elementos flotantes a la izquierda.</p>
+                <p class="lista"> &nbsp; * right: Es un keyword que indica que el elemento es movido hacia abajo para limpiar elementos flotantes a la derecha.</p>
+                <p class="lista"> &nbsp; * both: Es un keyword que indica que el elemento es movido hacia abajo para limpiar tanto elementos flotantes de la izquierda como de la derecha.</p>
+                <p class="lista"> &nbsp; * inline-start: Es un keyword que indica que el elemento es movido hacia abajo para limpiar elementos flotantes al inicio del bloque contenedor, estos son los elementos con valor float left en scripts ltr (left to right) y elementos con valor float right en scripts rtl (right to left).</p>
+                <p class="lista"> &nbsp; * inline-end: Es un keyword que indica que el elemento es movido hacia abajo para limpiar floats al final del bloque contenedor, estos son los elementos con valor float right en scripts ltr (left to right) y elementos con valor float left en scripts rtl (right to left).</p>
+            </div>
+
+            <div>
+                <p>Creación de un menú de navegación basado en listas con “float”</p>
+				<p>Ahora que has aprendido los conceptos básicos de “float” y “clear”, volvamos a la sección de la barra de navegación 
+				y vamos a añadir un menú sencillo basado en una lista no ordenada (es decir, que sus líneas no llevan numeración, sino viñetas o signos). 
+				Los elementos de la lista dentro de este menú tendrán que ser flotantes para modificar la presentación vertical por defecto de las listas. 
+				Los menús de navegación CSS se utilizan mucho en el diseño basado en estándares porque se pueden actualizar y modificar de manera muy sencilla, 
+				y porque se basan en textos ( y no en imágenes), lo que mejora la accesibilidad en dispositivos como los lectores de pantalla, e incluso ayudan
+				a mejorar el posicionamiento de nuestras páginas en los buscadores.
+				</p>
+            </div>
+			
+            <div>
+                <p>Añadir estilos para el texto</p>
+                <p>Hasta aquí hemos añadido los estilos dentro de una hoja de estilos interna en vez de hacerlo sobre una externa. 
+				Cuando estamos diseñando la estructura de las páginas, el empleo de hojas de estilo internas es una cuestión de comodidad: 
+				resulta más sencillo para crear y modificar reglas si las tenemos dentro de la página y podemos llegar a ellas desplazando
+				la ventana que si las tenemos en un archivo externo. De momento vamos a asociar una hoja de estilos externa que añade reglas 
+				de base para elementos como títulos, listas y párrafos.
+				</p>
+            </div>
+
+            <div>
+                <p>Efecto de los márgenes internos y externos en una estructura de anchura fija</p>
+				<p>En esta sección vamos a separar las secciones de texto de nuestra página (que en este momento tienen márgenes de cero pixels,
+				por efecto de la hoja de estilos de reset). Vamos a ver ahora algunas estrategias para controlar la estructura visual de la página. 
+				El objetivo de esta práctica no consiste en mostrar un método único de organización con CSS, sino en conocer las diferentes opciones posibles, 
+				lo que te ayudará en futuros proyectos a la hora de decidir qué método es el más adecuado en cada caso.
+				</p>
+                </p>
+            </div>
+
+            <br>
+
+            <div>
+                <p style="font-style: italic;">Preguntas:</p>
+                <p>
+                    1.- ¿Qué es un CSS? <br>
+                    Es lo que se denomina lenguaje de hojas de estilo en cascada y se usa para estilizar elementos escritos en un lenguaje de marcado como HTML. CSS separa el contenido de la representación visual del sitio. La relación entre HTML y CSS es muy fuerte. Dado que HTML es un lenguaje de marcado (es decir, constituye la base de un sitio) y CSS enfatiza el estilo (toda la parte estética de un sitio web), van de la mano.
+					CSS no es técnicamente una necesidad, pero no querrás tener un sitio que solo tenga HTML, ya que se vería completamente desnudo.
+                    <br><br>
+                    2.- ¿Para qué sirve un CSS?  <br>
+                    El código CSS hace la vida más fácil al desarrollador front-end al separar la estructura de un documento HTML de su presentación. 
+					Dicho de otro modo, el HTML actuaría como es esqueleto de la web, definiendo su estructura básica, y el CSS añadiría toda la capa de personalización 
+					sobre el que la web define su aspecto final. Siguiendo este fundamento resulta muy fácil para un diseñador web realizar cambios en la apariencia 
+					de una web sin afectar de manera dramática a su contenido. El contenido siempre será el mismo, solo cambia como aquello que podemos ver.
+					CSS permite estilizar todo en un archivo diferente, creando el estilo allí y después integrando el archivo CSS sobre el marcado HTML. 
+					Esto hace que el marcado HTML sea mucho más limpio y fácil de mantener.
+                    <br><br>
+                    Además de esta ventaja principal cuenta con otras más: <br>
+                    **La facilidad de organizar y hacer cambios<br>
+                    **El permitir que las páginas descarguen con mayor rapidez <br>
+                    **Mediante la separación se mejora la accesibilidad y escalabilidad del contenido <br>
+                    **La simplicidad para crear versiones dependiendo de los dispositivos (tablets, teléfonos inteligentes o dispositivos móviles, entre otros) <br>
+                    <br><br>
+                    3.- ¿Cuál es la diferencia que sería más difícil de realizar en un sitio web si se optara por no usar un CSS?. <br>
+                    Que el css le da una personalización del sitio web la cual sin ella será más difícil de implementar un diseño a la página, 
+					en ciertos aspectos directamente desde el HTML, pero no le da un desarrollo con la misma libertad ni contar con ninguna ventaja. 
+					Es fundamental contar mediante el desarrollo de la página añadir el css. <br>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <div class="conclusiones" style="text-align: justify;">
+        <h2>Conclusiones</h2>
+        <div class="conclusion">
+            <p>Jesus Antonio Loredo Lopez:</p>
+            <p>En conclusión, nos muestra esta lección la importancia que tiene las características de HTML son importantes, pero ahora me doy cuenta 
+			que al utilizar CSS podemos hacer una mejor estructura o diseño el cual hará que los distintos usuarios que lo utilices podrán tener una experiencia 
+			distinta al estar creando un sitio web.
+            </p>
+        </div>
+
+        <div class="conclusion">
+            <p>José Enrique Quiroz González:</p>
+            <p>En esta práctica investigamos sobre la importancia y usos del CSS. Es una herramienta muy importante para darle buen formato
+			a nuestras páginas web y volverlas más presentables y agradables a la vista del usuario. Mejora la usabilidad y experiencia del 
+			usuario de un sitio web y disminuye el procesamiento y el tiempo de carga.
+            </p>
+        </div>
+
+        <div class="conclusion">
+            <p>Alexis Adrian Velázquez Carrizales </p>
+            <p>Con la información obtenida en la realización de esta práctica comprendimos que el código html es fundamental dentro de la página,
+			pero para darle diseño, para hacer la página más amigable para la vista de los usuarios es necesario implementar el CSS, con el cual 
+			podemos cambiar por completo la imagen de nuestra página.
+			</p>
+        </div>
+
+        <div class="conclusion">
+            <p>Julián Nacim Athie Sánchez</p>
+            <p>En esta práctica, aprendimos y fortalecimos el uso de estilos para nuestro HTML, si lo puedes imaginar, lo puedes hacer, 
+			es increíble todas las opciones que te da CSS, al separar por clases tenemos una mayor organización y es más fácil cambiar 
+			el diseño en caso de que así lo querramos.
+			</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p class="footer__texto">AGOSTO - DICIEMBRE 2021</p>
+    </footer>
+
+</body>
+</html>
